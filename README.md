@@ -1,6 +1,7 @@
 # cpp1
 swing 1주차 스터디
-
+ 
+ 
 #include <iostream> <cstring>
 using namespace std;
 int main() 
@@ -9,7 +10,8 @@ int main()
 	cout << "당신의 이름은 무엇입니까? :" ;
 
 	char name[10]; //문자열 개수 지정
-	cin.getline(name, 10, '\n'); //cin.getline 공백포함한 문자열 입력
+	cin.getline(name, 10, '\n');  //cin.getline 공백포함한 문자열 입력
+
 	
 	cout << "반갑습니다." << name << "님.\n\n";
 
@@ -29,13 +31,15 @@ int main()
 	 cout << "콜라의 가격 :" ;
 	 cin >> coke; // 입력 콜라의 가격
 
+
 	 
 	 cout << "삼다수의 가격 :" ;
-	 cin >> water;
+	 cin >> water; // 입력 삼다수의 가격
+
 
 	cout << "환타의 가격 :" ;
-	cin >> fanta ;
-	cout << "" << endl;
+	cin >> fanta ; // 입력 환타의 가격
+	cout << "" << endl; //줄바꿈 식
 
 	cout << "개수를 입력해주세요.\n\n";
 	
@@ -43,18 +47,18 @@ int main()
 	cin >> c_number; //입력 콜라 개수
 	
 	cout << "삼다수 수량 :" ;
-	cin >> w_number;
+	cin >> w_number; //입력 삼다수 개수
 
 	
 	cout << "환타 수량 :" ;
-	cin >> f_number, '\n';
+	cin >> f_number;
 
-	cout << "----------------------------" << endl; //라인 출력
+	cout << "----------------------------" << endl;
 
-	int price; //최종 가격
-	price = coke * c_number + water * w_number + fanta * f_number; //최종 가격 계산식
+	int price;
+	price = coke * c_number + water * w_number + fanta * f_number;
 
-	cout << "500원 할인받아 총" << price - 500 << "원 입니다." << endl; //500원 할인
+	cout << "500원 할인받아 총" << price - 500 << "원 입니다." << endl;
 
 	return 0;
 
