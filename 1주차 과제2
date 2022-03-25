@@ -1,0 +1,192 @@
+#define _CRT_SECURE_NO_WARNINGS //strcpy함수가 안전하지 않다고 나와서 디파인함.
+
+#include <iostream>
+#include <string>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+	cout << "---------------string class----------------" << endl;
+	string str1 = "Hello";
+	string str2 = "SWING";
+	string str3 = "30th"; //0=3, 1=0, 2=t, 3=h
+	string str4 = "SWU"; //0=S, 1=W, 2=U
+	string str5 = "sleeping";
+	string str6 = "mandu";
+
+	cout << "str1:" << str1 << endl;
+	cout << "str2:" << str2 << endl;
+	cout << "str3:" << str3 << endl;
+	cout << "str4:" << str4 << endl;
+	cout << endl;
+
+	//append 
+
+	cout << "1. 'append'" << endl;
+	cout << "str1.append(str2):" << str1.append(str2) << endl;
+	cout << endl;
+	cout << "str2.append(str3):" << str2.append(str3) << endl; //str2=SWING -> SWING30th
+
+	cout << endl;
+
+
+
+	//insert
+	cout << "2. 'insert'" << endl;
+	cout << "str1.insert(str2):" << str1.insert(2, str2) << endl; //str1두번째 인덱스에 str2가 삽입된다.
+	cout << endl;
+	/*위에 append에서 str1은  HelloSWING으로, str2는 SWING30th가 됨.
+	따라서 insert 출력할 때 HeSWING30thlloSWING 으로 나옴.*/
+
+
+
+
+	//length size()와 동일함.
+
+	cout << "4. 'length'" << endl;
+	cout << "str1.length:" << str1.length() << endl; //str1 clear -> 문자의 개수 0
+	cout << "str2.length:" << str2.length() << endl; //str2=SWING3th -> 문자의 개수 9
+	cout << "str3.length:" << str3.length() << endl;
+	cout << "str4.length:" << str4.length() << endl;
+	cout << endl;
+
+	//str.erase(n,m) n~m index의 문자열을 지움. erase=clear
+	cout << "5. 'erase'" << endl;
+	cout << "str1=" << str1 << endl;
+	cout << "str1.erase(2, 9):" << str1.erase(2, 9) << endl;
+	cout << "str2=" << str2 << endl;
+	cout << "str2.erase(5, 7):" << str2.erase(5, 7) << endl;
+	cout << endl;
+
+	//clear 
+
+	cout << "6. 'clear'" << endl;
+
+	str1.clear(); cout << "str1.clear():" << str1 << endl; //str1만 클리어
+	cout << endl;
+
+
+	//str.empty 비어있는 문자열인지 확인
+	cout << "7. 'empty'" << endl;
+	cout << "str1=empty:" << str1.empty() << endl; //true=1, false=0
+	cout << "str4=empty:" << str4.empty() << endl;
+	cout << endl;
+
+
+	//at str.at(n) 문자열에서 n번째 문자를 반환
+
+	cout << "8. 'at'" << endl;
+	cout << "str3.at(3):" << str3.at(0) << endl;
+	cout << "str4.at(1):" << str4.at(1) << endl;
+
+	cout << endl;
+
+
+
+	//front 문자열 첫 문자 반환
+
+	cout << "9. 'front'" << endl;
+	cout << "str2.front():" << str2.front() << endl; //S
+	cout << "str3.front():" << str3.front() << endl; //3
+	cout << "str4.front():" << str4.front() << endl; //S
+	cout << endl;
+
+
+
+	//back 문자열 마지막 문자 반환
+
+	cout << "10. 'back'" << endl;
+	cout << "str2.back():" << str2.back() << endl;
+	cout << "str3.back():" << str3.back() << endl;
+	cout << "str3.back():" << str3.back() << endl;
+	cout << endl;
+
+
+	//str.push_back() 맨 뒤에 괄호 속 문자를 붙여줌.
+	cout << "11. 'push_back'" << endl;
+	str3.push_back('h'); cout << "str3.push_back('h'):" << str3 << endl;
+
+	cout << endl;
+
+	//str.pop_back() 맨 뒤 문자 제거
+	cout << "12. 'pop_back'" << endl;
+	str3.pop_back(); cout << "str3.pop_back():" << str3 << endl;
+
+	cout << endl;
+
+	//str.assign(str1) str에 str1문자열을 할당함.
+
+	cout << "13. 'assign'" << endl;
+	cout << "str1.assign(str5):" << str1.assign(str5) << endl;
+	cout << "str4.assign(str6):" << str4.assign(str6) << endl;
+	cout << endl;
+
+
+	//str.replace(n,k,str2) n번째 문자부터 k개의 문자를 str2로 대체함.
+
+	cout << "14. 'replace'" << endl;
+	cout << "str3.replace(4,2,str1)" << str3.replace(4, 2, str1) << endl; //5,2는 안됨. 
+	cout << endl;
+
+	//str.capacity 문자열에 할당된 메모리 크기(bytes) 반환
+
+	cout << "15. 'capacity'" << endl;
+	cout << "str1.capacity():" << str1.capacity() << endl;
+	cout << "str2.capacity():" << str2.capacity() << endl;
+	cout << "str3.capacity():" << str3.capacity() << endl;
+	cout << "str4.capacity():" << str4.capacity() << endl;
+	cout << "str5.capacity():" << str5.capacity() << endl;
+	cout << "str6.capacity():" << str6.capacity() << endl;
+	cout << endl;
+
+
+
+	cout << "------------------cstring class-------------------" << endl;
+
+	char a[100] = "Hello";
+	char b[100];
+	char c[100] = "World";
+	char d[10];
+	char s1[25] = "Happy";
+	char s2[25] = "Banana";
+
+
+	//strcpy(num,n) num에 n대입 
+
+	cout << "1. 'strcpy'" << endl;
+	cout << "strcpy(b,a):" << strcpy(b, a) << endl;
+	cout << "strcpy(d,c):" << strcpy(d, c) << endl;
+	cout << endl;
+
+	//strcmp() 문자열비교 같으면 0, 다르면 1: s1문자열이 s2보다 사전 상 뒤쪽, -1: s1문자열이 s2보다 사전 상 앞쪽
+	cout << "2. 'strcmp'" << endl;
+	cout << "strcmp(a,b):" << strcmp(a,b) << endl;
+	cout << "strcmp(c,d):" << strcmp(c, d) << endl;
+	cout << "strcmp(s2,s1):" << strcmp(s2, s1) << endl;  //s2가 s1보다 사전 상 앞이므로 -1 출력
+	cout << endl;
+
+
+	//strlen() 문자열의 길이 반환
+	cout << "3. 'strlen'" << endl;
+	cout << "strlen(a):" << strlen(a) << endl;
+	
+	cout << endl;
+
+	
+	//strcat(s1, s2) s1, s2 문자열 연결 한 걸 s1에
+	cout << "4. 'strcat'" << endl;
+	cout << "strcat(a,c):" << strcat(a, c) << endl;
+	cout << "strcat(s1,s2):" << strcat(s1, s2) << endl;
+	cout << endl;
+
+	//strncat(s1,s2,4) null 문자 저장함. s1 HappyBanana 뒤에 Banana중 4글자 Bana만 붙음
+	cout << "5. 'strncat'" << endl;
+	cout << "strncat(s1,s2,6):" << strncat(s1, s2, 6) << endl;
+	cout << endl;
+
+	return 0;
+
+
+}
