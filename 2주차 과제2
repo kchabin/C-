@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int choice;//좌석 예약 할건지 말건지
+	int i, j; //i는 행, j는 열
+	int seats[3][10]={}; //좌석 배열
+	int seat1, seat2;//입력 받는 좌석값
+
+	cout << "좌석 예약하시겠습니까?(0 이나 1 선택)";
+	cin >> choice;
+	cout << endl;
+
+	if (choice == 0)
+		cout << "좌석 예약 종료" << endl;
+	
+	while (choice == 1) //배열 반복 출력
+	{
+		
+
+		cout << "1 2 3 4 5 6 7 8 9 10" << endl;
+		cout << "-------------------------------------" << endl;
+
+		for (i = 0; i < 3; i++)
+		{
+			for (j = 0; j < 10; j++)
+			{
+				cout << seats[i][j] << " ";
+			}
+			cout << endl;
+		}
+
+		cout << "몇 행, 몇 열 좌석을 예약하시겠습니까?";
+		cin >> seat1;
+		cin >> seat2;
+
+	
+		//예약 조건
+		if (seats[seat1 - 1][seat2 - 1] == 0)
+		{
+			seats[seat1 - 1][seat2 - 1] = 1; //예약된 좌석을 1로 바꿔줌.
+			cout << "예약되었습니다." << endl;
+			cout << endl;
+
+			cout << "1 2 3 4 5 6 7 8 9 10" << endl; //인덱스는 0 1 2 3 4 5 6 7 8 9
+			cout << "-------------------------------------" << endl;
+
+			for (i = 0; i < 3; i++)
+			{
+				for (j = 0; j < 10; j++)
+				{
+					cout << seats[i][j] << " ";
+				}
+				cout << endl;
+			}
+			 
+		}
+
+		else if (seats[seat1 - 1][seat2 - 1] == 1) //인덱스는 0부터 시작. 
+		{
+			cout << "이미 예약된 자리입니다." << endl;
+			
+		}
+
+		cout << "좌석 예약하시겠습니까?(0 이나 1 선택)";
+		cin >> choice;
+		cout << endl;
+
+		if (choice == 0)
+		{
+			cout << "좌석 예약 종료" << endl;
+			break;
+		}
+
+
+	} 
+	
+
+	return 0;
+}
