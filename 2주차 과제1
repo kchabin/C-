@@ -1,0 +1,70 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime> //time 함수에 필요
+using namespace std;
+int main()
+{
+	srand((unsigned)time(NULL)); //seed 값으로 현재시간 부여
+    
+	int num1 = rand() % 101; //범위 [a,b] 이라면 %
+	int num2;
+
+
+	//난수 %101 = 난수의 범위 0~100까지 한정
+
+	cout << "랜덤한 수:" << num1 << endl;
+	cout << "특정배수 개수:";
+	cin >> num2;
+	
+
+	
+
+	
+	for (int i = 0; i < 3; i++) //0번째 1번째 2번째 특정 배수 
+	{   
+		int num3; //num3 는 특정 배수 2
+		cout << i << "번째 특정 배수:";
+		cin >> num3; //2,4,7, 입력
+
+		cout << "<특정배수만 출력하는 프로그램>" << endl;
+		
+
+		int n;
+		for (n = 1; n <= num1; n++) //정수 n 나열
+		{
+
+			if (n % num3 != 0) //특정배수 조건 
+				continue;
+
+			cout << n << ",";
+
+
+
+			/* 수 나열 하다가 도중에 특정배수 제외
+			* 1. 2의 배수만 출력 if(n%num3!=0) contiune;
+			* 2. 2의 배수 아닌 것만 출력 if (n%num3==0) continue;
+			*/
+
+
+		}
+		cout << endl;
+		cout << "<특정배수 제외 출력하는 프로그램>" << endl;
+
+		for (n = 1; n <= num1; n++)
+		{
+			if (n % num3 == 0)
+				continue;
+
+			cout << n << ",";
+			
+		}
+		cout << endl;
+		
+		 
+		 
+	}
+	
+	return 0;
+
+	
+}
