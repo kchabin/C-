@@ -6,7 +6,7 @@ int main()
 {
 	srand((unsigned)time(NULL)); //seed 값으로 현재시간 부여
     
-	int num1 = rand() % 101; //범위 [a,b] 이라면 %
+	int num1 = rand() % 101; 
 	int num2;
 
 
