@@ -4,9 +4,9 @@
 using namespace std;
 int main()
 {
-	srand((unsigned)time(NULL)); //seed 값으로 현재시간 부여 무작위 난수 출력
+	srand((unsigned)time(NULL)); //seed 값으로 현재시간 부여
     
-	int num1 = rand() % 101; 
+	int num1 = rand() % 101; //범위 [a,b] 이라면 %
 	int num2;
 
 
@@ -20,11 +20,11 @@ int main()
 	
 
 	
-	for (int i = 0; i < 3; i++) //0번째 1번째 2번째 특정 배수 
+	for (int i = 0; i < num2; i++) //사용자가 입력한 개수에 따라서 반복 횟수가 정해진다. 
 	{   
 		int num3; //num3 는 특정 배수 2
 		cout << i << "번째 특정 배수:";
-		cin >> num3; //예시 사진 2,4,7, 입력
+		cin >> num3; //2,4,7, 입력
 
 		cout << "<특정배수만 출력하는 프로그램>" << endl;
 		
@@ -52,7 +52,7 @@ int main()
 
 		for (n = 1; n <= num1; n++)
 		{
-			if (n % num3 == 0) //특정배수 제외
+			if (n % num3 == 0)
 				continue;
 
 			cout << n << ",";
