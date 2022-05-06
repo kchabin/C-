@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+
 int total(int *a, int *b, int *c, int *d)
 {
 	//모든 은행 계좌 금액 총합
