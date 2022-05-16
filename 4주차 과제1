@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+class Box
+{
+private:
+
+	char f='*';
+	int width, height;
+
+	 
+public: 
+
+	 
+	Box(int w, int h) //생성자 만들기
+	{
+		width = w;
+		height = h;
+	}
+	~Box(){};//소멸자
+
+
+public:
+
+	char setFill(char f); //사각형 만들 문자 정하기, 디폴트 값 * 지정
+	int setSize(int w, int h);
+	void draw(int w, int h); //입력받은 문자와 크기로 사각형 출력하기
+
+};
+//함수 구현
+char Box::setFill(char k)//문자 세팅함수
+{ 
+	f = k;
+	//f값 입력받아서 기존 f값 다시 설정.
+	return f;
+}
+int Box::setSize(int w, int h)//사이즈 함수
+{
+
+	width = w;
+	height = h;
+	return w, h;
+
+}
+void Box::draw(int w, int h)//출력 함수
+{
+
+	int i, j;
+	
+
+	for (i = 0; i < h; i++) //세로 h번 반복
+	{
+
+		for (j = 0; j < w; j++) //가로 w번 반복
+		{
+			cout << setFill(f); //입력한 문자를 출력
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+
+int main()
+{
+	
+	Box square1(3,4); //가로 3, 세로 4
+	square1.setFill('*');//문자 입력
+	square1.setSize(3,4);
+	square1.draw(3,4);
+
+	cout << endl;
+
+	Box square2(6,10);
+	square2.setFill('^'); 
+	square2.setSize(6,10);
+	square2.draw(6, 10);
+	
+
+
+	return 0;
+
+}
