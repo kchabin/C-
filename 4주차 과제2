@@ -5,30 +5,41 @@ class Shape
 {
 private:
     //변수 
-    string NAME; //타원, 사각형, 사다리꼴 
+    string NAME;
+      //타원, 사각형, 사다리꼴 
     int A; //가로1
     int B; //세로
     int C; //사다리꼴 아랫변
 
 public:
 
-    Shape(string NAME="Ladder") {} //Shape a
+    Shape(string NAME = "CircleA") {
+        this->NAME = NAME; //앞 name = 클래스 내 멤버 변수, 뒤 name =  매개변수로 받은 
+    } //Shape a
 
     Shape(int a, int b, string NAME="Rectangular") //Shape b(10,20);
     {
+        this->NAME = NAME;
         A = a;
         B = b;
     }
-    Shape(int a, int b, int c, string NAME="CircleA") //Shape c
+    Shape(int a, int b, int c, string NAME="Ladder") //Shape c
     {
+        this->NAME = NAME;
         A = a;
         B = b;
         C = c;
     }
-
-    ~Shape() {}
     
    
+
+
+    ~Shape() {
+    
+        cout << "Shape 소멸" << NAME << "클래스" << endl;
+    }
+    
+    
 
     //
     int getA(int A) //A값 리턴
@@ -66,6 +77,7 @@ public:
     }//사다리꼴의 A,B,C 길이 설정.
 
 };
+ //함수 구현부
 
 double Shape::AreaOval(int A, int B) //타원 함수
 {
@@ -108,8 +120,6 @@ int main()
     c.setThree(5, 10, 6);
     c.AreaLadder(5, 10, 6);
     
-    cout << "Shape 소멸 Ladder클래스" << endl;
-    cout << "Shape 소멸 Rectangular클래스" << endl;
-    cout << "Shape 소멸 CircleA클래스" << endl;
+    
     return 0;
 }
