@@ -1,0 +1,115 @@
+#include <iostream>
+using namespace std;
+
+class Shape
+{
+private:
+    //변수 
+    string NAME; //타원, 사각형, 사다리꼴 
+    int A; //가로1
+    int B; //세로
+    int C; //사다리꼴 아랫변
+
+public:
+
+    Shape(string NAME="Ladder") {} //Shape a
+
+    Shape(int a, int b, string NAME="Rectangular") //Shape b(10,20);
+    {
+        A = a;
+        B = b;
+    }
+    Shape(int a, int b, int c, string NAME="CircleA") //Shape c
+    {
+        A = a;
+        B = b;
+        C = c;
+    }
+
+    ~Shape() {}
+    
+   
+
+    //
+    int getA(int A) //A값 리턴
+    {
+        return A;
+    }
+    int getB(int B) //B값 리턴
+    {
+        return B;
+    }
+    int getC(int C) //C값 리턴
+    {
+        return C;
+    }
+
+    double AreaOval(int A, int B);
+    int AreaLadder(int A, int B, int C);
+    int AreaRect(int A, int B);
+
+    int setTwo(int a, int b)
+    {
+        A = a;
+        B = b;
+        return A, B;
+
+    }//타원의 A,B나 사각형의 A,B 설정
+
+    int setThree(int a, int b, int c)
+    {
+        A = a;
+        B = b;
+        C = c;
+        return A, B, C;
+
+    }//사다리꼴의 A,B,C 길이 설정.
+
+};
+
+double Shape::AreaOval(int A, int B) //타원 함수
+{
+    double oval = getA(A) * getB(B) * 3.14;
+    cout << "타원의 넓이는 " << oval << "이다." << endl;
+    return oval;
+}
+int Shape::AreaRect(int A, int B) //사각형 함수
+{
+    int square = getA(A) * getB(B);
+    cout << "사각형의 넓이는 " << square << "이다." << endl;
+
+    return square;
+}
+int Shape::AreaLadder(int A, int B, int C) //사다리꼴 함수
+{
+    int ladder = (getA(A) + getC(C)) * getB(B) * 1/2;
+    cout << "사다리꼴의 넓이는 " << ladder << "이다." << endl;
+
+    return ladder;
+}
+
+
+
+int main()
+{ //타원 사각형 사다리꼴 사다리꼴
+
+    Shape a;
+    a.setTwo(5, 1);
+    a.AreaOval(5, 1);
+    
+
+    Shape b(10, 20);
+    b.setTwo(10, 20);
+    a.AreaRect(10, 20);
+
+    Shape c(3, 7, 4);
+    c.setThree(3, 7, 4);
+    c.AreaLadder(3, 7, 4);
+    c.setThree(5, 10, 6);
+    c.AreaLadder(5, 10, 6);
+    
+    cout << "Shape 소멸 Ladder클래스" << endl;
+    cout << "Shape 소멸 Rectangular클래스" << endl;
+    cout << "Shape 소멸 CircleA클래스" << endl;
+    return 0;
+}
