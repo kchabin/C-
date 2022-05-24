@@ -1,0 +1,230 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Member //로그인 화면을 만들자
+{
+   //필요 정보 = 이름, 아이디, 비밀번호 -> 멤버 변수로 만들어주자
+
+	string name, id, pass; 
+public:
+	Member(){}
+	Member(string, string, string){}
+	~Member(){}
+
+	//get 함수
+	string getName() //이름을 가져오는 함수
+	{
+		return name;
+	}
+	string getId()
+	{
+		return id;
+	}
+	string getPassword()
+	{
+		return pass;	
+	}
+
+	//set 함수
+	string setName(string N)//회원가입 시, 이름 값을 받는다. 입력은 cin >> N 이런식으로 따로
+	{
+		name = N;
+		return name;
+	}
+	string setId(string I)
+	{
+		id = I;
+		return id;
+	}
+	string setPassword(string P)
+	{
+		pass = P;
+		return pass;
+	}
+
+	void getEvery(string N, string I, string P)
+	{
+		Member* i = new Member(name, id, pass);
+
+	}
+
+};
+ 
+
+
+class Cart
+{
+	int choice2; //메뉴 선택
+
+
+public:
+
+	string list[3] = { "C++ 프로그래밍", "Linux", "리버싱" }; //강의 목록 배열
+	int class_num[3] = {0001, 0002, 0003}; //학수번호 배열
+	int bgc[3]; //bag_course 함수 
+	
+	void bag_course() {
+		
+		cout << "추가할 학수 번호 >>";
+		cin >> bgc[3];
+		this->bgc[3]=bgc[3];
+
+		if (bgc[3] == class_num[3])
+			cout << "이미 My 장바구니에 담겨져 있습니다." << endl;
+	}
+	//2번 강의 담기 기능
+
+	void put_bag() 
+	{
+		cout << "======== My 장바구니 ========" << endl;
+		for (int j = 0; j < 3; j++)
+		{
+			cout << j+1 << ":" << bgc[j] << endl;
+		}
+	}
+	//3번 수강 신청 확인 기능 
+
+	void print() //장바구니 기능 , 강의 목록 배열로 받아서 출력
+	{
+		cout << "======== 강의목록 ========" << endl;
+		for (int i = 0; i < 3; i++)
+		{
+			cout << "[" << i + 1 << "]" << list[i] << "000" << i + 1 << endl;
+		}
+	}
+
+ 
+
+ 
+};
+
+
+
+int main()
+{
+	int choice1, choice2;
+	string a, b, c; //set함수에 들어갈 인수. 이름, 아이디, 비밀번호
+
+	string* n = new string;
+	
+	string* i = new string;
+	
+	string* p = new string;
+	
+
+	Member login;
+	Member* lo;
+	lo = &login; //객체 포인터
+
+	Cart mains;
+	Cart* ma;
+	ma = &mains;
+
+	while(1) //전체 반복
+	{
+		cout << "-----------------------  서울여자대학교 종합정보시스템 -----------------------" << endl;
+
+		cout << "1. 회원가입" << endl;
+		cout << "2. 로그인" << endl;
+		cout << endl;
+		cout << "번호를 입력하세요 >> ";
+		cin >> choice1;
+		cout << "-------------------------------------------------------------------" << endl;
+		cout << endl;
+
+		//로그인 성공하면 메인화면으로 이동. 로그인 성공할 때 까지 반복. 
+
+		switch (choice1)
+		{
+		case 1:
+			cout << "이름: ";
+			cin >> a;
+			*n = lo->setName(a);
+			lo->getName();
+
+			cout << "아이디: ";
+			cin >> b;
+			*i = lo->setId(b);
+			lo->getId();
+
+			cout << "비밀번호: ";
+			cin >> c;
+			*p = lo->setPassword(c);
+			lo->getPassword();
+		
+			lo->getEvery(a, b, c);
+
+			cout << endl;
+			cout << "=== 회원가입 성공 === " << endl;
+			cout << endl;
+
+			break;
+
+		case 2:
+			cout << "아이디: ";
+			cin >> b;
+			lo->getId();
+			cout << "비밀번호: ";
+			cin >> c;
+			lo->getPassword();
+			lo->getEvery(a, b, c);
+			
+			if (b== lo->getId() && c == lo->getPassword())//로그인 정보 동일
+			{
+				cout << "=== 로그인 성공 ===" << endl;
+				cout << endl;
+				cout << a << "님 환영합니다." << endl;
+
+				cout << "==============================" << endl;
+				cout << "1. 장바구니" << endl;
+				cout << "2. 강의 담기" << endl;
+				cout << "3. 수강신청 확인" << endl;
+				cout << "4. 로그아웃" << endl;
+				cout << "번호를 입력하세요: ";
+
+				cin >> choice2;
+
+				switch (choice2)
+				{
+				case 1:
+					ma->print();
+					//break;
+				case 2:
+					ma->bag_course(); //강의 담기 기능 함수
+					//break;
+				case 3:
+					ma->put_bag();
+					break;
+				case 4:
+					cout << "---------------- 로그아웃 ----------------" << endl;
+					cout << "로그아웃 되었습니다. 안녕히 가세요." << endl;
+					break;
+
+				}
+				
+			}
+			else
+			{
+				cout << "아이디 혹은 비밀번호가 틀렸습니다." << endl;
+			}
+			break;
+		default:
+			cout << "1 또는 2만 입력해주세요." << endl;
+			
+			break;
+
+		}
+
+	
+
+		delete n;
+		delete i;
+		delete p;
+
+
+	} //while (choice1==4); //로그아웃 때까지.
+
+
+	return 0;
+}
