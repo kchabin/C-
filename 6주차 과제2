@@ -1,0 +1,147 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+using namespace std;
+const int NAME_LEN = 20;
+
+enum {INFO=1, CHANGE, EXIT};
+
+class GameCharacter {
+	char* name; //캐릭터 이름
+	int age; //나이
+	char* job; //직업
+
+public:
+	void make(); //캐릭터 생성
+	void copy(); //캐릭터 복사 객체 포인터로?
+	void info(); //캐릭터 정보 확인
+	void change(); //캐릭터 정보 수정
+	 
+	GameCharacter(const char* name, int age, const char* job); //생성자
+	GameCharacter(const GameCharacter& character); //복사 생성자
+	~GameCharacter(); //소멸자
+
+};
+GameCharacter::GameCharacter(const char* name, int age, const char* job)
+{
+	this->age = age;
+	int len1 = strlen(name); //name의 문자 개수
+	int len2 = strlen(job); //job의 문자 개수
+	this->name = new char[len1 + 1]; //name 문자열 공간 할당
+	this->job = new char[len2 + 1]; //직업 문자열 공간 할당
+	strcpy(this->name, name);//name에 문자열 복사
+	strcpy(this->job, job); //직업에 문자열 복사
+}
+
+GameCharacter::GameCharacter(const GameCharacter& character)
+{
+	this->age = character.age; //나이 값 복사
+	int len1 = strlen(character.name); //name의 문자 개수
+	int len2 = strlen(character.job);
+	this->name = new char[len1 + 1]; //name을 위한 공간 할당
+	this->job = new char[len2 + 1];
+	strcpy(this->name, character.name); //name의 문자열 복사
+	strcpy(this->job, character.job); 
+}
+GameCharacter::~GameCharacter() {
+	if (name) //만일 name에 동적 할당된 배열이 있으면
+		delete[] name; //동적 할당 메모리 소멸
+}
+
+//클래스 구현부
+void menu()
+{
+	cout << "==========캐릭터 관리==========" << endl;
+	 
+	cout << "1. 캐릭터 정보 확인" << endl;
+	cout << "2. 캐릭터 정보 수정" << endl;
+	cout << "3. 종료" << endl;
+}
+void GameCharacter::info()
+{
+	cout << "=====캐릭터 정보=====" << endl;
+	 
+	cout << "캐릭터 이름: " << name << endl;
+	cout << "캐릭터 나이: " << age << endl;
+	cout << "캐릭터 직업: " << job << endl;
+	cout << endl;
+}
+void GameCharacter::change()
+{
+	int choice=0;
+	
+	cout << "-->";
+	cin >> name;
+	cin >> age;
+	cin >> job;
+	cout << "정상적으로 수정되었습니다." << endl;
+}
+ 
+int main()
+{
+	int num = 0; //메뉴 입력
+
+	//객체 2개 생성해야함. -> 근데 어디에 생성해야하지....스위치문에는 못쓰는데,,
+	// 캐릭터1, 캐릭터2 
+	// 처음에는 복사해서 캐릭터 정보 출력 시 둘 다 같게 나오고
+	// 나중에 수정해서 캐릭터 정보 한개만 바뀜
+	// 1에 if문으로 캐릭터 1을 연결하고
+	// 2에 if문으로 캐릭터 2 연결
+	// 
+	//GameCharacter character1(name, age, job);
+	// 이 생성자 괄호 안에 들어가는게 make() 함수 이용해서 
+	// 사용자로부터 입력받은 캐릭터의 이름, 나이, 직업.
+	//GameCharacter character2(character1); 객체 캐릭터2는 복사생성자로 생성.
+	//copy 누르면 복사 생성 돼야하는데 
+	//아니면 클래스멤버함수로 copy를 만들고 그 안에 복사 생성자..
+	//아악
+	
+
+	int age = 0;
+	char name[NAME_LEN];
+	char job[NAME_LEN];
+	int choice = 0;
+
+	cout << "=====캐릭터 생성 및 복사=====" << endl;
+	cout << endl;
+	cout << "생성할 캐릭터의 이름, 나이, 직업을 순서대로 입력해주세요.(공백으로 구분)" << endl;
+	cout << "참고사항: 직업의 종류는 자유롭게!" << endl;
+	cout << "-->";
+	cin >> name;
+	cin >> age;
+	cin >> job;
+	GameCharacter A(name, age, job);
+
+	GameCharacter B(A);
+	cout << "캐릭터가 복사되었습니다." << endl;
+	cout << endl;
+
+	while (1)
+	{
+		menu();//메뉴 출력
+		cout << "번호를 선택해주세요.: ";
+		cin >> num;
+		switch (num)
+		{
+		case INFO:
+			A.info();
+			B.info();
+			break;
+		case CHANGE:
+			cout << "수정하고 싶은 캐릭터를 선택하세요.(1 or 2): ";
+			cin >> choice;
+			if (choice == 1)
+				A.change();
+			else if (choice == 2)
+				B.change();
+			break;
+		case EXIT:
+			cout << "종료되었습니다." << endl;
+			exit(0);
+			break;
+		}
+			
+	}
+	return 0;
+}
+
+
